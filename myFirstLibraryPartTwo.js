@@ -65,15 +65,16 @@ loopThrough(arr, printValAndIndex);
 // "hey", 1
 
 /*
-======================myFirstLibraryPartTwo=========================
+============================EXERCISES=============================
 Objective: Build out the rest of these functions without using a for loop.
 */
-
+/*
 var obj = {course: 'Telegraph Prep+', best: true};
 var arr = [1, 2, 3, 4, 5];
 var print = function(val){
 	console.log(val);
 };
+*/
 
 // loopThrough takes a collection (array, or object), and a callback, invokes the callback function on each element in the collection
 var loopThrough = function(collection, callback){
@@ -101,10 +102,26 @@ var loopThrough = function(collection, callback){
 	// 5
 
 /* Test copyBy, filterBy with Objects:
-
-Import (copy and paste) your filterBy and copyBy functions and invoke them with callbacks that make sense to be used on objects.
-
+Import (copy and paste) your filterBy and copyBy functions and invoke them with callbacks that make sense to be used on objects. Continue to return with array.
 */
+
+// filterBy takes an array, and a predicate, and returns an array filled by with ONLY the values that pass the predicates truth test
+window.filterBy = function(array, predicate){
+  // new array to be returned
+  var result = [];
+  // utilize loopThrough function and push values that pass the predicate test into the results array
+  loopThrough(array, function(val) {result.push(predicate(val));});
+  return result;
+};
+
+window.copyBy = function(array, callback){
+  // new array to be returned
+  var result = [];
+  // utilize loopThrough function and push new values into the results array
+  loopThrough(array,function(val) {result.push(callback(val));} );
+  return result;
+}; 
+
 var containsValue = function(collection, value){
 	/*
 	
