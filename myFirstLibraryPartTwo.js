@@ -5,8 +5,7 @@ Objective: Build out the rest of these functions without using a for loop.
 
 */
 
-var loopThrough = function(collection callback){
-	
+var loopThrough = function(collection, callback){
 	/* loopthrough, refactored:
 
 		loopThrough takes a collection (array, or object), and a callback, invokes the callback function on each element in the collection.
