@@ -1,12 +1,12 @@
 // =============================LECTURE=================================
 
-// ===============LOOPTHROUGH CHECKING ARRAY ONLY========================
+// ===============LOOPTHROUGH CHECKING ARRAYS ONLY========================
 var loopThrough = function(array, callback){
 	for(var i = 0; i < array.length; i++){
 		callback(array[i]);
 	}
 };
-// ============FILTERBY (NOT USING ANONYMOUS FUNCTION)===================
+// =======FILTERBY NOT USING ANONYMOUS FUNCTION, ARRAYS ONLY===========
 
 // filterBy takes an array, a predicate(just a function that returns true or false) and returns all the elements that pass the truth test
 startsWithA = function(val){
@@ -36,7 +36,7 @@ var filterBy = function(array, predicate){
 
 filterBy(names, startsWithA);
 
-// ===FILTERBY (USING ANONYMOUS FUNCTION, CHECKING OBJECT AND ARRAYS====
+// ===FILTERBY USING ANONYMOUS FUNCTION, CHECKING OBJECT AND ARRAYS====
 var loopThrough = function(collection, callback){
 	if(Array.isArray(collection)){
 		for(var i = 0; i < collection.length; i++){
@@ -64,19 +64,17 @@ loopThrough(arr, printValAndIndex);
 // "hi", 0
 // "hey", 1
 
-/*
-============================EXERCISES=============================
-Objective: Build out the rest of these functions without using a for loop.
-*/
-/*
+// ============================EXERCISES=============================
+// Objective: Build out the rest of these functions without using a for loop.
+
 var obj = {course: 'Telegraph Prep+', best: true};
 var arr = [1, 2, 3, 4, 5];
 var print = function(val){
 	console.log(val);
 };
-*/
 
-// loopThrough takes a collection (array, or object), and a callback, invokes the callback function on each element in the collection
+
+// loopThrough takes a collection (array or object), and a callback, invokes the callback function on each element in the collection
 var loopThrough = function(collection, callback){
 	if(Array.isArray(collection)){
 		for(var i = 0; i < collection.length; i++){
@@ -105,14 +103,65 @@ var loopThrough = function(collection, callback){
 Import (copy and paste) your filterBy and copyBy functions and invoke them with callbacks that make sense to be used on objects. Continue to return with array.
 */
 
-// filterBy takes an array, and a predicate, and returns an array filled by with ONLY the values that pass the predicates truth test
-window.filterBy = function(array, predicate){
+// object will return false when predicate test is applied
+var currentBike = {
+	make: "Yamaha",
+	model: "XJ",
+	cc: 700
+};
+
+// object will return true when predicate test is applied
+var futureBike = {
+	make: "Triumph",
+	model: "Bonneville",
+	cc: 1200
+};
+
+// predicate test for objects
+var greaterThan1000cc = function(val, key){
+	if(val > 1000){
+		return true;
+	}
+	else{
+		return false;
+	}
+};
+
+var loopThrough = function(collection, callback){
+	if(Array.isArray(collection)){
+		for(var i = 0; i < collection.length; i++){
+			callback(collection[i], i);
+		}
+	}
+	else {
+		for(var key in collection){
+			console.log(callback(collection[key], key));
+		}
+	}
+};
+// var testCurrent = loopThrough(currentBike, greaterThan1000cc);
+// var testFuture = loopThrough(futureBike, greaterThan1000cc);
+
+// filterBy takes an object, and a predicate, and returns an array filled by with ONLY the objects that pass the predicates truth test
+window.filterBy = function(collection, predicate){
   // new array to be returned
   var result = [];
   // utilize loopThrough function and push values that pass the predicate test into the results array
-  loopThrough(array, function(val) {result.push(predicate(val));});
+  loopThrough(collection, function(val) {
+    if(predicate(val)){
+      result.push(collection);
+    }
+  });
   return result;
 };
+
+// var testCurrent = filterBy(currentBike, greaterThan1000cc);
+// console.log('testCurrent',testCurrent);
+// var testFuture = filterBy(futureBike, greaterThan1000cc);
+// console.log('testFuture',testFuture);
+
+
+
 
 window.copyBy = function(array, callback){
   // new array to be returned
