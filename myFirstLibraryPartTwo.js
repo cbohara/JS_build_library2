@@ -169,15 +169,25 @@ var containsValue = function(collection, targetValue){
 // false
 /*
 Expand your loopThrough function further by allowing its callback to take the collections value and current index/key.
-
-
-EXAMPLE:
-
+*/
 var obj = {name: 'Prep', cohort: '1', people: 'awesome'}
 
 var printValAndIndex = function(val, keyOrindex){
 		console.log('this is the value:', val);
 		console.log('this is the corresponding index and/or key:', keyOrindex);
+};
+
+var loopThrough = function(collection, callback){
+	if(Array.isArray(collection)){
+		for(var i = 0; i < collection.length; i++){
+			callback(collection[i], i);
+		}
+	}
+	else {
+		for(var key in collection){
+			callback(collection[key], key);
+		}
+	}
 };
 
 loopThrough(obj, printValAndIndex);
@@ -190,7 +200,6 @@ loopThrough(obj, printValAndIndex);
 //this is the value: awesome
 //this is the corresponding index and/or key: people
 
-*/
 
 var indexOf = function(collection, targetValue){
 	/*
