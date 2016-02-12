@@ -124,30 +124,50 @@ window.filterBy = function(collection, predicate){
 // console.log('testCurrent',testCurrent);
 // var testFuture = filterBy(futureBike, greaterThan1000cc);
 // console.log('testFuture',testFuture);
+/*
+var obj = {course: 'Telegraph Prep+', best: true};
 
-var containsValue = function(collection, value){
-	/*
-	
-	containsValue takes a collection and a target value, checks the collection for the value and returns true or false if it exists.
-	
+var arr = [1, 2, 3, 4, 5];
 
-	EXAMPLE:
-
-	var obj = {course: 'Telegraph Prep+', best: true};
-
-	var arr = [1, 2, 3, 4, 5];
-
-
-
-	containsValue(arr, 5) --> true;
-	containsValue(arr, 9) --> false;
-	containsValue(obj, 'Telegraph Prep+') --> true;
-
-	*/
+var loopThrough = function(collection, callback){
+	if(Array.isArray(collection)){
+		for(var i = 0; i < collection.length; i++){
+			callback(collection[i], i);
+		}
+	}
+	else {
+		for(var key in collection){
+			callback(collection[key], key);
+		}
+	}
+};
+*/
+// containsValue takes a collection and a target value, checks the collection for the value and returns true or false if it exists
+var containsValue = function(collection, targetValue){
+// initialize result to false
+  var result = false;
+  // utilize loopThrough function to loop through the collection and check to see if the target value exists within the collection
+  loopThrough(collection, function(valueInCollection){
+    // if any value in the array is true, return true
+    // console.log('test in loop through',collection[value]);
+    if(valueInCollection === targetValue){
+      result = true; 
+    }
+  });
+  // return true if the value in the collection matches the target value
+  // return false if target value is not found in collection
+  return result;
 };
 
+// containsValue(arr, 5);
+// true
+// containsValue(arr, 9);
+// false
+// containsValue(obj, 'Telegraph Prep+');
+// true
+// containsValue(obj, 'silly');
+// false
 /*
-	
 Expand your loopThrough function further by allowing its callback to take the collections value and current index/key.
 
 
