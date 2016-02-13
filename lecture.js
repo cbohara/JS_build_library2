@@ -55,7 +55,7 @@ indexOf(arr, 5){
 
 }
 
-varPrintValAndIndex = function(val, index){
+var PrintValAndIndex = function(val, index){
 	console.log(val, index);
 }
 

@@ -43,7 +43,7 @@ var currentBike = {
 	model: "XJ"
 };
 
-// test object
+//test object
 var futureBike = {
 	make: "Triumph",
 	model: "Bonneville"
@@ -72,14 +72,16 @@ window.copyBy = function(collection, callback){
   // new array to be returned
   var result = [];
   // utilize loopThrough function and push new values into the results array
-  loopThrough(collection,function(val){result.push(callback(val));} );
+  loopThrough(collection,function(val){
+  	result.push(callback(val));
+  });
   return result;
 }; 
 
 // var testCurrent = copyBy(currentBike, valueLength);
 // console.log(testCurrent);
-var testFuture = copyBy(futureBike, valueLength);
-console.log(testFuture);
+// var testFuture = copyBy(futureBike, valueLength);
+// console.log(testFuture);
 
 
 /*
@@ -124,7 +126,7 @@ window.filterBy = function(collection, predicate){
 // console.log('testCurrent',testCurrent);
 // var testFuture = filterBy(futureBike, greaterThan1000cc);
 // console.log('testFuture',testFuture);
-/*
+
 var obj = {course: 'Telegraph Prep+', best: true};
 
 var arr = [1, 2, 3, 4, 5];
@@ -141,7 +143,7 @@ var loopThrough = function(collection, callback){
 		}
 	}
 };
-*/
+
 // containsValue takes a collection and a target value, checks the collection for the value and returns true or false if it exists
 var containsValue = function(collection, targetValue){
 // initialize result to false
@@ -158,23 +160,23 @@ var containsValue = function(collection, targetValue){
   // return false if target value is not found in collection
   return result;
 };
-
-// containsValue(arr, 5);
+/*
+containsValue(arr, 5);
 // true
-// containsValue(arr, 9);
+var test = containsValue(arr, 9);
 // false
-// containsValue(obj, 'Telegraph Prep+');
+containsValue(obj, 'Telegraph Prep+');
 // true
-// containsValue(obj, 'silly');
+containsValue(obj, 'silly');
 // false
 /*
 Expand your loopThrough function further by allowing its callback to take the collections value and current index/key.
 */
 var obj = {name: 'Prep', cohort: '1', people: 'awesome'}
 
-var printValAndIndex = function(val, keyOrindex){
+var printValAndIndex = function(val, keyOrIndex){
 		console.log('this is the value:', val);
-		console.log('this is the corresponding index and/or key:', keyOrindex);
+		console.log('this is the corresponding index and/or key:', keyOrIndex);
 };
 
 var loopThrough = function(collection, callback){
