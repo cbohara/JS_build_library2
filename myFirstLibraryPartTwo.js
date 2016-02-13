@@ -192,7 +192,7 @@ var loopThrough = function(collection, callback){
 	}
 };
 
-loopThrough(obj, printValAndIndex);
+// loopThrough(obj, printValAndIndex);
 //this is the value: Prep
 //this is the corresponding index and/or key: name
 
@@ -202,42 +202,49 @@ loopThrough(obj, printValAndIndex);
 //this is the value: awesome
 //this is the corresponding index and/or key: people
 
+var arr = [383, 83, 38, 419, 48];
+var obj = {name: 'Albrey', sport: 'basketball', favFood: 'burritos'};
 
-var indexOf = function(collection, targetValue){
-	/*
-	indexOf takes a collection and a target value. If the target value exists in the collection, return the associated key or index to the user.
-
-
-	var arr = [383, 83, 38, 419, 48];
-	var obj = {name: 'Albrey', sport: 'basketball', favFood: 'burritos'};
-
-	indexOf(arr, 48) --> 4
-	indexOf(obj, 'burritos') --> favFood;
-
-
-	*/
+// indexOfFunction takes a collection and a target value. If the target value exists in the collection, return the associated key or index to the user.
+var indexOfFunction = function(collection, targetValue){
+	// if the value in the collection matches the target value, the associated key or index will be stored into the result variable
+	var result;
+  	// utilize loopThrough function to loop through the collection and check to see if the target value exists within the collection
+  	loopThrough(collection, function(valueInCollection, keyOrIndex){
+  		// if the value in the collection matches the target value, store associated key or index into the result variable
+    	if(valueInCollection === targetValue){
+      		result = keyOrIndex; 
+    	}
+	});
+	// return associated key or index
+  	return result;
 };
 
+// var testArray = indexOfFunction(arr, 48);
+// console.log(testArray);
+// 4
+// var testObject = indexOfFunction(obj, 'burritos');
+// console.log(testObject);
+// favFood;
 
+
+var obj1 = {name: 'Albrey', sport: 'basketball', favFood: 'burritos'};
+
+var obj2 = {hairColor: 'red', profession: 'teacher', name: 'Shanna'};
+
+// extendObject function takes a target object and extender object. If the target and extender have the same key, overwrite the targets value with the extenders value.
 var extendObject = function(targetObj, extenderObj){
 
-/*
-	extendObject takes a target object and extender object an extender object and adds extender's key value pairs to the target object.
-
-	If the target and extender have the same key, overwrite the targets value with the extenders value.
-
-	var obj1 = {name: 'Albrey', sport: 'basketball', favFood: 'burritos'};
-
-	var obj2 = {hairColor: 'red', profession: 'teacher', name: 'Shanna'};
-
-
-	extendObjectNoOverwrite(obj1, obj2);
-	// {name: 'Shanna', sport: 'basketball', favFood: 'burritos', hairColor: 'red', profession: 'teacher'};
 
 
 
-*/
+
+
+
+
 };
+extendObjectNoOverwrite(obj1, obj2);
+// {name: 'Shanna', sport: 'basketball', favFood: 'burritos', hairColor: 'red', profession: 'teacher'};
 
 var extendObjectNoOverWrite = function(obj1, obj2){
 	/*
