@@ -238,43 +238,54 @@ var indexOfFunction = function(collection, targetValue){
 */
 
 var obj1 = {name: 'Albrey', sport: 'basketball', favFood: 'burritos'};
-
 var obj2 = {hairColor: 'red', profession: 'teacher', name: 'Shanna'};
 
 // extendObject function takes a original object and extender object. If the original and extender have the same key, overwrite the original value with the extenders value.
 var extendObject = function(originalObj, extenderObj){
-	var matchKey;
   	// utilize loopThrough function to loop through the original object
   	loopThrough(originalObj, function(originalObjValue, originalObjKey){
   		// utilitze loopThrough function to loop through the extender object within the original object loopThrough order to determine if the original and extender have the same key
   		loopThrough(extenderObj, function(extenderObjValue, extenderObjKey) {
+  			// if the original and extender have the same key, overwrite the original value with the extenders value.
   			if(originalObjKey === extenderObjKey){
-  				extendObject.extenderObjKey = extenderObjValue;
+  				originalObj[originalObjKey] = extenderObj[extenderObjKey];
+  			}
+  			// if the keys don't match, add the extender object key and value to the original object
+  			else{
+  				originalObj[extenderObjKey] = extenderObjValue;
   			}
   		});
   	});
-  	console.log(extenderObj);
+  	return originalObj;
 };
 
-var test = extendObject(obj1, obj2);
-// console.log(test);
+var test1 = extendObject(obj1, obj2);
+// console.log(test1);
 // {name: 'Shanna', sport: 'basketball', favFood: 'burritos', hairColor: 'red', profession: 'teacher'};
 
-var extendObjectNoOverWrite = function(obj1, obj2){
-	/*
-		extendObjectNoOverWrite is similar to extendObject, the only difference is that it does NOT overwrite values at keys that already exist.
+var obj1 = {name: 'Albrey', sport: 'basketball', favFood: 'burritos'};
+var obj2 = {hairColor: 'red', profession: 'teacher', name: 'Shanna'};
 
-		var obj1 = {name: 'Albrey', sport: 'basketball', favFood: 'burritos'};
-
-		var obj2 = {hairColor: 'red', profession: 'teacher', name: 'Shanna'};
-
-
-		extendObjectNoOverWrite(obj1, obj2);
-		// {name: 'Albrey', sport: 'basketball', favFood: 'burritos', hairColor: 'red', profession: 'teacher'};
-
-		// ALBREY WAS NOT OVERWRITTEN
-	*/
+// extendObjectNoOverWrite is similar to extendObject, the only difference is that it does NOT overwrite values at keys that already exist.
+var extendObjectNoOverWrite = function(originalObj, extenderObj){
+  	// utilize loopThrough function to loop through the original object
+  	loopThrough(originalObj, function(originalObjValue, originalObjKey){
+  		// utilitze loopThrough function to loop through the extender object within the original object loopThrough order to determine if the original and extender have the same key
+  		loopThrough(extenderObj, function(extenderObjValue, extenderObjKey) {
+  			// if the original and extender have the same key, keep the original key's value
+  			if(originalObj.hasOwnProperty(extenderObjKey)){
+  				originalObj[originalObjKey] = originalObj[originalObjKey];
+  			}
+  		});
+  	});
+  	// console.log('originalObj in function',originalObj);
+  	return originalObj;
 };
+
+// var test = extendObjectNoOverWrite(obj1, obj2);
+// console.log('test',test)
+// {name: 'Albrey', sport: 'basketball', favFood: 'burritos', hairColor: 'red', profession: 'teacher'};
+// ALBREY WAS NOT OVERWRITTEN
 
 
 // =============== EXTRA CREDIT ====================
