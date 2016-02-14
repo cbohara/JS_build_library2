@@ -257,12 +257,8 @@ var extendObject = function(originalObj, extenderObj){
 };
 
 var test = extendObject(obj1, obj2);
-console.log(test);
+// console.log(test);
 // {name: 'Shanna', sport: 'basketball', favFood: 'burritos', hairColor: 'red', profession: 'teacher'};
-
-
-
-
 
 var extendObjectNoOverWrite = function(obj1, obj2){
 	/*
@@ -281,55 +277,79 @@ var extendObjectNoOverWrite = function(obj1, obj2){
 };
 
 
-
 // =============== EXTRA CREDIT ====================
+var obj = {course: 'Telegraph Prep+', best: true};
+var arr = [1, 2, 3, 4, 5];
 
-
-
-
-var pluckItem = function(collection, input){
-/* 
-	pluckItem takes an object, and a key, and if the key exists returns the associated value. If the key doesn't exist, pluckItem returns "item was not found".
-	
-	var obj = {course: 'Telegraph Prep+', best: true};
-		
-		var arr = [1, 2, 3, 4, 5];
-	
-
-	pluckItem(obj, 'course') --> Telegraph Prep+
-	pluckItem(obj, 'worst')-->'item was not found.'
-
-*/
+// pluckItem takes an object, and a target key, and if the key exists within the object returns the associated value. If the key doesn't exist, pluckItem returns "item was not found"
+var pluckItem = function(collection, targetKey){
+	// create variable to store result if key in object matches target key
+	var result = "";
+	// loop through the object to determine if key in object matches target key
+	loopThrough(collection, function(val, key){
+		// if there is a match, store the value of the object key into result
+		if(key === targetKey){
+			result = val;
+		}
+	});
+	// if the loop through did not catch a match, the result variable will still be empty and will let the user know that the item was not found
+	if(result === ""){
+		return 'item was not found.';
+	}
+	// otherwise return the value of the result
+	else{
+		return result;
+	}
 };
 
+var test1 = pluckItem(obj, 'course');
+// console.log('test1',test1);
+// Telegraph Prep+
+var test2 = pluckItem(obj, 'worst');
+// console.log('test2',test2);
+// 'item was not found.'
+
+
+var obj = {course: 'Telegraph Prep+', best: true};
+
+// 	collectKeys takes a collection and returns an array filled with all of they keys inside of the collection
 var collectKeys = function(collection){
-	/*
-	collectKeys takes a collection and returns an array filled with all of they keys inside of the collection.
-
-	
-	var obj = {course: 'Telegraph Prep+', best: true};
-
-	collectKeys(obj) --> ['course', 'best'];
-
-	*/
+	// create array to fill with keys
+	var result = [];
+	// loop through the object and collect the keys into an array
+	loopThrough(collection, function(value, key){
+		result.push(key);
+	});
+	return result;
 };
+
+var test = collectKeys(obj);
+// console.log('test',test);
+// ['course', 'best']
 
 // NIGHTMARE MODE:
-
-/*
-
-expand your loopThrough to pass the value, index/key, AND the collection itself into its callback function.
-
-*/
-var shuffle = function(collection){
-	/*
-	
-	shuffle takes an array and returns an array full of the values shuffled into random indexes. 
-	
-	var arr = [1, 2, 3, 4, 5];
-
-	shuffle(arr) --> [2, 4, 5, 1, 3];
-	*/
+// expand your loopThrough to pass the value, index/key, AND the collection itself into its callback function.
+var loopThrough = function(collection, callback){
+	if(Array.isArray(collection)){
+		for(var i = 0; i < collection.length; i++){
+			callback(collection[i], i, collection);
+		}
+	}
+	else {
+		for(var key in collection){
+			callback(collection[key], key, collection);
+		}
+	}
 };
+
+var arr = [1, 2, 3, 4, 5];
+
+// shuffle takes an array and returns an array full of the values shuffled into random indexes. 
+var shuffle = function(collection){
+	return _.shuffle(collection);
+};
+
+var test = shuffle(arr); 
+// console.log('test',test);
 
 
