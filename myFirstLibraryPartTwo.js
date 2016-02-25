@@ -358,7 +358,7 @@ var loopThrough = function(collection, callback){
 
 var arr = [1, 2, 3, 4, 5];
 
-// shuffle takes an array and returns an array full of the values shuffled into random indexes. 
+// shuffle takes an array and returns an array full of the values shuffled into random indexes
 var shuffle = function(collection){
 	return _.shuffle(collection);
 };
